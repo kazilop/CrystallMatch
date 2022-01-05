@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 18473513924693908, guid: 2995cbe778c50a44fabea455500bab0a, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.7897436
+      objectReference: {fileID: 0}
+    - target: {fileID: 18473513924693908, guid: 2995cbe778c50a44fabea455500bab0a, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.8923077
+      objectReference: {fileID: 0}
     - target: {fileID: 5510945516619505266, guid: 2995cbe778c50a44fabea455500bab0a, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -58,7 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5510945516619505276, guid: 2995cbe778c50a44fabea455500bab0a, type: 3}
       propertyPath: m_Name
-      value: Gem - Purple
+      value: Gem - Purple Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5510945516619505277, guid: 2995cbe778c50a44fabea455500bab0a, type: 3}
+      propertyPath: type
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
