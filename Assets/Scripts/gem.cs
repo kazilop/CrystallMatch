@@ -17,13 +17,15 @@ public class Gem : MonoBehaviour
 
     private Gem otherGem;
 
-    public enum GemType { blue, green, red, yellow, purple}
+    public enum GemType { blue, green, red, yellow, purple, bomb}
     public GemType type;
 
     public bool isMatched;
 
     [HideInInspector]
     public Vector2Int previousPos;
+
+    public GameObject destroyEffect;
 
 
     void Start()
@@ -49,8 +51,11 @@ public class Gem : MonoBehaviour
         {
             mousePressed = false;
 
-            finalTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            CalculateAngle();
+            if (board.currentState == Board.BoardState.move)
+            {
+                finalTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                CalculateAngle();
+            }
         }
     }
 
@@ -62,9 +67,14 @@ public class Gem : MonoBehaviour
 
     private void OnMouseDown()
     {
-        firstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //Debug.Log(firstTouchPosition);
-        mousePressed = true;
+        if (board.currentState == Board.BoardState.move)
+        {
+
+
+            firstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //Debug.Log(firstTouchPosition);
+            mousePressed = true;
+        }
     }
 
     private void CalculateAngle()
@@ -117,6 +127,8 @@ public class Gem : MonoBehaviour
 
     public IEnumerator CheckMoveCo()
     {
+        board.currentState = Board.BoardState.wait;
+
         yield return new WaitForSeconds(0.4f);
 
         board.matchFind.FindAllMatches();
@@ -130,8 +142,17 @@ public class Gem : MonoBehaviour
 
                 board.allGems[posIndex.x, posIndex.y] = this;
                 board.allGems[otherGem.posIndex.x, otherGem.posIndex.y] = otherGem;
+
+                yield return new WaitForSeconds(0.5f);
+                board.currentState = Board.BoardState.move;
+            }
+            else
+            {
+                board.DestroyMatches();
             }
         }
     }
+
+    
 
 }

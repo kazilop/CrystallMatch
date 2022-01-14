@@ -132,6 +132,7 @@ Library: lib_burst_generated
 --root-assembly=D:\UNITY3D\Projects\CrystallMatch\Temp\StagingArea\Data\Managed\Unity.2D.Tilemap.Extras.dll
 --root-assembly=D:\UNITY3D\Projects\CrystallMatch\Temp\StagingArea\Data\Managed\Unity.2D.IK.Runtime.dll
 --root-assembly=D:\UNITY3D\Projects\CrystallMatch\Temp\StagingArea\Data\Managed\Unity.2D.SpriteShape.Runtime.dll
+--root-assembly=D:\UNITY3D\Projects\CrystallMatch\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=D:\UNITY3D\Projects\CrystallMatch\Temp\StagingArea\Data\Managed\Unity.2D.Common.Runtime.dll
 --root-assembly=D:\UNITY3D\Projects\CrystallMatch\Temp\StagingArea\Data\Managed\Unity.2D.PixelPerfect.dll
 --root-assembly=D:\UNITY3D\Projects\CrystallMatch\Temp\StagingArea\Data\Managed\Unity.InternalAPIEngineBridge.001.dll
