@@ -21,6 +21,9 @@ public class Board : MonoBehaviour
     public enum BoardState { wait, move}
     public BoardState currentState = BoardState.move;
 
+    public Gem bomb;
+    public float bombChance = 2f;
+
     private void Awake()
     {
         matchFind = FindObjectOfType<MatchFinder>();
@@ -66,6 +69,11 @@ public class Board : MonoBehaviour
 
     private void SpawnGem(Vector2Int pos, Gem gemToSpawn)
     {
+        if(Random.Range(0f,100f) < bombChance)
+        {
+            gemToSpawn = bomb;
+        }
+
         Gem gemc = Instantiate(gemToSpawn, new Vector3(pos.x, pos.y + height, 0f), Quaternion.identity);
         gemc.transform.parent = transform;
         gemc.name = "Gem - " + pos.x + ", " + pos.y;

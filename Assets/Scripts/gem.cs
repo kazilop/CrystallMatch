@@ -27,6 +27,8 @@ public class Gem : MonoBehaviour
 
     public GameObject destroyEffect;
 
+    public int blastSize = 1;
+
 
     void Start()
     {
