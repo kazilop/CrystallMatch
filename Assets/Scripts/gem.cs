@@ -29,6 +29,8 @@ public class Gem : MonoBehaviour
 
     public int blastSize = 1;
 
+    public int scoreValue = 5;
+
 
     void Start()
     {
@@ -53,7 +55,7 @@ public class Gem : MonoBehaviour
         {
             mousePressed = false;
 
-            if (board.currentState == Board.BoardState.move)
+            if (board.currentState == Board.BoardState.move && board.roundMan.roundTime > 0)
             {
                 finalTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 CalculateAngle();
@@ -69,7 +71,7 @@ public class Gem : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (board.currentState == Board.BoardState.move)
+        if (board.currentState == Board.BoardState.move && board.roundMan.roundTime > 0)
         {
 
 
@@ -131,7 +133,7 @@ public class Gem : MonoBehaviour
     {
         board.currentState = Board.BoardState.wait;
 
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.3f);
 
         board.matchFind.FindAllMatches();
 
@@ -145,7 +147,7 @@ public class Gem : MonoBehaviour
                 board.allGems[posIndex.x, posIndex.y] = this;
                 board.allGems[otherGem.posIndex.x, otherGem.posIndex.y] = otherGem;
 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.3f);
                 board.currentState = Board.BoardState.move;
             }
             else

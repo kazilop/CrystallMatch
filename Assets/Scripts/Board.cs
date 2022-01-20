@@ -24,9 +24,15 @@ public class Board : MonoBehaviour
     public Gem bomb;
     public float bombChance = 2f;
 
+    public RoundManager roundMan;
+
+    private float bonusMulti;
+    public float bonusAmount = 0.5f;
+
     private void Awake()
     {
         matchFind = FindObjectOfType<MatchFinder>();
+        roundMan = FindObjectOfType<RoundManager>();
     }
     void Start()
     {
@@ -127,6 +133,8 @@ public class Board : MonoBehaviour
         {
             if(matchFind.currentMatches[i] != null)
             {
+                ScoreCheck(matchFind.currentMatches[i]);
+
                 DestroyMatchedGemAt(matchFind.currentMatches[i].posIndex);
             }
         }
@@ -169,22 +177,25 @@ public class Board : MonoBehaviour
 
     private IEnumerator FillBoardCo()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
 
         RefilBoard();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
 
         matchFind.FindAllMatches();
 
         if(matchFind.currentMatches.Count > 0)
         {
-            yield return new WaitForSeconds(1.0f);
+            bonusMulti++;
+            yield return new WaitForSeconds(0.5f);
             DestroyMatches();
         }
         else
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             currentState = BoardState.move;
+
+            bonusMulti = 0;
         }
 
     }
@@ -228,6 +239,17 @@ public class Board : MonoBehaviour
         foreach(Gem g in foundGems)
         {
             Destroy(g.gameObject);
+        }
+    }
+
+    public void ScoreCheck(Gem gemToCheck)
+    {
+        roundMan.currentScore += gemToCheck.scoreValue;
+
+        if(bonusMulti > 0)
+        {
+            float bonusToAdd = gemToCheck.scoreValue * bonusMulti * bonusAmount;
+            roundMan.currentScore += Mathf.RoundToInt(bonusToAdd);
         }
     }
 
