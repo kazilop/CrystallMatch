@@ -29,6 +29,8 @@ public class Board : MonoBehaviour
     private float bonusMulti;
     public float bonusAmount = 0.5f;
 
+    
+
     private void Awake()
     {
         matchFind = FindObjectOfType<MatchFinder>();
